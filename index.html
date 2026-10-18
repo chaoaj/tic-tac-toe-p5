@@ -15,6 +15,13 @@
     <main>
       <h1>Tic-Tac-Toe</h1>
 
+      <!-- Player mode selector (FR-8.1) -->
+      <fieldset class="mode">
+        <legend>Players</legend>
+        <label><input type="radio" name="mode" value="one"> 1 player (you are X, the computer is O)</label>
+        <label><input type="radio" name="mode" value="two" checked> 2 players</label>
+      </fieldset>
+
       <!-- Visible turn / result status (FR-3.4, FR-5.2, FR-5.3) -->
       <p id="status" class="status">Player X’s turn</p>
 
@@ -28,8 +35,8 @@
       <section aria-labelledby="score-heading" class="scoreboard">
         <h2 id="score-heading">Score</h2>
         <ul>
-          <li>Player X wins: <span id="score-x">0</span></li>
-          <li>Player O wins: <span id="score-o">0</span></li>
+          <li><span id="label-x">Player X</span> wins: <span id="score-x">0</span></li>
+          <li><span id="label-o">Player O</span> wins: <span id="score-o">0</span></li>
           <li>Draws: <span id="score-draws">0</span></li>
         </ul>
       </section>
@@ -43,7 +50,7 @@
       <!-- Visible instructions (FR-9.5) -->
       <section aria-labelledby="help-heading" class="help">
         <h2 id="help-heading">How to play</h2>
-        <p>Take turns placing X and O. Get three in a row, column, or diagonal to win.</p>
+        <p>Take turns placing X and O. Get three in a row, column, or diagonal to win. Choose 1 player to play against the computer, or 2 players to play with a friend on the same device. Changing the number of players starts a new game and resets the score.</p>
         <ul>
           <li><strong>Mouse or touch:</strong> select an empty square.</li>
           <li><strong>Keyboard:</strong> press Tab to reach the board, then use the arrow keys to move between squares, and press Enter or Space to place your mark.</li>
