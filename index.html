@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tic-Tac-Toe</title>
+    <title>Tic-Tac-Toe – p5.js</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -12,6 +12,47 @@
   </head>
 
   <body>
+    <main>
+      <h1>Tic-Tac-Toe</h1>
+
+      <!-- Visible turn / result status (FR-3.4, FR-5.2, FR-5.3) -->
+      <p id="status" class="status">Player X’s turn</p>
+
+      <!-- Screen-reader announcements for moves and results (FR-9.2, FR-9.3) -->
+      <div id="announcer" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- p5.js puts the canvas here -->
+      <div id="board"></div>
+
+      <!-- Scoreboard as HTML text (FR-6.2) -->
+      <section aria-labelledby="score-heading" class="scoreboard">
+        <h2 id="score-heading">Score</h2>
+        <ul>
+          <li>Player X wins: <span id="score-x">0</span></li>
+          <li>Player O wins: <span id="score-o">0</span></li>
+          <li>Draws: <span id="score-draws">0</span></li>
+        </ul>
+      </section>
+
+      <!-- Native buttons (FR-7.1 to FR-7.3) -->
+      <div class="controls">
+        <button type="button" id="new-round">New Round</button>
+        <button type="button" id="reset-score">Reset Score</button>
+      </div>
+
+      <!-- Visible instructions (FR-9.5) -->
+      <section aria-labelledby="help-heading" class="help">
+        <h2 id="help-heading">How to play</h2>
+        <p>Take turns placing X and O. Get three in a row, column, or diagonal to win.</p>
+        <ul>
+          <li><strong>Mouse or touch:</strong> select an empty square.</li>
+          <li><strong>Keyboard:</strong> press Tab to reach the board, then use the arrow keys to move between squares, and press Enter or Space to place your mark.</li>
+          <li><strong>Number keys 1–9:</strong> jump to a square (1 is top-left, 9 is bottom-right).</li>
+          <li><strong>N:</strong> new round. <strong>R:</strong> reset the score. <strong>B:</strong> hear the whole board read aloud.</li>
+        </ul>
+      </section>
+    </main>
+
     <script src="sketch.js"></script>
   </body>
 </html>

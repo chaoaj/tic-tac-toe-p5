@@ -1,8 +1,119 @@
+/* Colors from SRS Table 14 (WCAG 1.4.3 / 1.4.11) */
+:root {
+  --ink: #1A1A1A;
+  --bg: #FFFFFF;
+  --accent: #1F3864;
+  --focus: #C26A00;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 16px 10px 32px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.status {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  min-height: 1.5em;
+}
+
+#board {
+  display: flex;
+  justify-content: center;
 }
 
 canvas {
   display: block;
+  border-radius: 4px;
+  touch-action: manipulation;
+}
+
+/* Visible focus for the board itself (WCAG 2.4.7) */
+canvas:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.scoreboard {
+  margin-top: 16px;
+}
+
+.scoreboard ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 8px 18px;
+  color: #FFFFFF;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2C4F8C;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.help ul {
+  padding-left: 1.25rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
