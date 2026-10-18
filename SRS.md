@@ -18,7 +18,7 @@
 | --- | --- | --- | --- |
 | 1.0 | 2026-10-18 | [Author] | Initial release |
 
-Table of Contents
+## Table of Contents
 
 - [1. Introduction](#1-introduction)
   - [1.1 Purpose](#11-purpose)
@@ -366,7 +366,7 @@ Cell index layout:
 
 **Table 22. Board cell indices**
 
-|   | Column 1 | Column 2 | Column 3 |
+| Row | Column 1 | Column 2 | Column 3 |
 | --- | --- | --- | --- |
 | **Row 1** | 0 | 1 | 2 |
 | **Row 2** | 3 | 4 | 5 |
@@ -381,8 +381,6 @@ const WIN_LINES = [
   [0, 4, 8], [2, 4, 6]              // diagonals
 ];
 ```
-
-
 
 ### 6.2 State Transitions
 
