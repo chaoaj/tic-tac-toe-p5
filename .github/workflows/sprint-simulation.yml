@@ -1,0 +1,42 @@
+# Sprint simulation for the Tic-Tac-Toe p5.js GitHub Project.
+#
+# Every weekday afternoon this workflow closes any open issue whose body
+# contains a hidden marker  <!-- close-on: YYYY-MM-DD -->  with a date on or
+# before today. Because GitHub's burn-up chart is built from real close
+# events, this produces the planned pattern over three weeks:
+#   Week 1 ahead of plan, Week 2 behind plan, Week 3 finishing on time.
+#
+# Run it by hand from the Actions tab (Run workflow) to catch up if a day
+# was missed. Disable or delete this file when the demonstration is over.
+
+name: Sprint simulation
+
+on:
+  schedule:
+    - cron: "0 21 * * 1-5"   # 21:00 UTC, Monday to Friday
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  close-scheduled-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close issues that are due
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          today=$(TZ=America/New_York date +%F)
+          echo "Today (America/New_York): $today"
+          gh issue list --repo "$REPO" --state open --limit 200 \
+            --json number,title,body > open.json
+          jq -r '.[] | [.number, (.body | capture("close-on: (?<d>[0-9]{4}-[0-9]{2}-[0-9]{2})").d // "")] | @tsv' open.json |
+          while IFS=$'\t' read -r num due; do
+            if [ -n "$due" ] && [[ ! "$due" > "$today" ]]; then
+              echo "Closing #$num (due $due)"
+              gh issue close "$num" --repo "$REPO" --reason completed \
+                --comment "Completed (scheduled for $due by the sprint simulation)."
+            fi
+          done
